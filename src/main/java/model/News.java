@@ -9,7 +9,7 @@ public class News {
     private int departmentId;
     private Timestamp createdAt;
 
-    public News(int id,String content,int userId,int departmentId,Timestamp createdAt) {
+    public News(int id,String content,int userId,int departmentId) {
         this.id=id;
         this.content = content;
         this.userId=userId;
@@ -18,7 +18,7 @@ public class News {
 
     }
 
-    public News(int id,String content,int userId,Timestamp createdAt) {
+    public News(int id,String content,int userId) {
         this.id=id;
         this.content = content;
         this.userId=userId;
@@ -49,9 +49,9 @@ public class News {
         this.userId = userId;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
+//    public Timestamp getCreatedAt() {
+//        return createdAt;
+//    }
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
