@@ -27,7 +27,7 @@ public class Sql2oUserDao implements UserDao {
 
     @Override
     public List<User> getAll() {
-        String sql="select * from users";
+        String sql="SELECT * FROM users";
         try(Connection con = sql2o.open()){
             return con.createQuery(sql).executeAndFetch(User.class);
         }
@@ -35,7 +35,10 @@ public class Sql2oUserDao implements UserDao {
 
     @Override
     public User findById(int id) {
-        return null;
+        String sql ="SELECT * FROM users WHERE id = :id ";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql).addParameter("id",id).executeAndFetchFirst(User.class);
+        }
     }
 
     @Override
