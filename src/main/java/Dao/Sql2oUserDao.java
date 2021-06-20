@@ -1,5 +1,7 @@
 package Dao;
 
+import model.Department;
+import model.News;
 import model.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -27,6 +29,19 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
+    public void addDepartmentUser(User user, Department department) {
+        String sql = "INSERT INTO department_users (departmentId, userId) VALUES (:departmentId, :userId)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("departmentId", department.getId())
+                    .addParameter("userId", user.getId())
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public List<User> getAll() {
         String sql="SELECT * FROM users";
         try(Connection con = sql2o.open()){
@@ -44,7 +59,7 @@ public class Sql2oUserDao implements UserDao {
 
     @Override
     public void update(User user,int id, String name, String position, String role, int departmentId) {
-        String sql = "UPDATE users SET  (id,name,position,role,departmentId) = (:id :name,:position,:role,:departmentId) where id= :id ";
+        String sql = "UPDATE users SET  (name,position,role,departmentId) = ( :name,:position,:role,:departmentId) WHERE id= :id ";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
                     .addParameter("id",id)

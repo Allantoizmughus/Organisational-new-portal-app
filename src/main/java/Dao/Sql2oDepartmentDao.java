@@ -34,7 +34,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
 
     @Override
     public void addDepartmentNews(Department department, News news) {
-        String sql = "INSERT INTO departmentNews (departmentId, newsId) VALUES (:departmentId, :newsId)";
+        String sql = "INSERT INTO department_news (departmentId, newsId) VALUES (:departmentId, :newsId)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("departmentId", department.getId())
@@ -47,7 +47,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
 
     @Override
     public void addDepartmentUser(Department department, User user) {
-        String sql = "INSERT INTO department_news (departmentId, userId) VALUES (:departmentId, :userId)";
+        String sql = "INSERT INTO department_users (departmentId, userId) VALUES (:departmentId, :userId)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("departmentId", department.getId())
@@ -69,7 +69,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     @Override
     public List<News> getAllDepartmentNews(int departmentId) {
         List<News> news = new ArrayList(); //empty list
-        String joinQuery = "SELECT newsId FROM departmentNews WHERE departmentId = :departmentId";
+        String joinQuery = "SELECT newsId FROM department_news WHERE departmentId = :departmentId";
 
         try (Connection con = sql2o.open()) {
             List<Integer> allNewsIds = con.createQuery(joinQuery)
@@ -93,7 +93,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     @Override
     public List<User> getAllDepartmentUser(int departmentId) {
         List<User> user = new ArrayList(); //empty list
-        String joinQuery = "SELECT userId FROM departmentUsers WHERE departmentId = :departmentId";
+        String joinQuery = "SELECT userId FROM department_users WHERE departmentId = :departmentId";
 
         try (Connection con = sql2o.open()) {
             List<Integer> allUserIds = con.createQuery(joinQuery)
@@ -140,6 +140,11 @@ public class Sql2oDepartmentDao implements DepartmentDao{
 
     @Override
     public void clearAll() {
-
+        String sql = "DELETE from departments";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 }
