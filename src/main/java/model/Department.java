@@ -13,7 +13,7 @@ public class Department {
 
 
 
-    public Department(int id,String name,String description) {
+    public Department(String name,String description) {
         this.name=name;
         this.description=description;
         this.memberNumber=memberNumber;
@@ -75,7 +75,7 @@ public class Department {
     public static ArrayList<Department> getAllInstances(){return instances;}
 
     public static Department setUpNewDepartment(){
-        return new Department(0,"Admin","Registering");
+        return new Department("Admin","Registering");
     }
 
 }
