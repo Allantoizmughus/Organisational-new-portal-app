@@ -1,6 +1,7 @@
 package Dao;
 
 import model.News;
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
@@ -14,7 +15,15 @@ public class Sql2oNewsDao implements NewsDao {
 
     @Override
     public void add(News news) {
-        String sql="INSERT INTO news()";
+        String sql="INSERT INTO news(id,content,userId) VALUES(:id,:content,:userId)";
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sql,true)
+                    .addParameter("id",news.getId())
+                    .addParameter("content",news.getContent())
+                    .addParameter("userId",news.getUserId())
+                    .executeUpdate().getKey();
+            news.setId(id);
+        }
     }
 
     @Override
