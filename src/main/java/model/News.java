@@ -1,6 +1,7 @@
 package model;
 
 import java.security.Timestamp;
+import java.util.ArrayList;
 
 public class News {
     private int id;
@@ -8,13 +9,15 @@ public class News {
     private int userId;
     private int departmentId;
     private Timestamp createdAt;
+    private static ArrayList<News> instances=new ArrayList<>();
 
     public News(int id,String content,int userId,int departmentId) {
-        this.id=id;
+        this.id= instances.size();
         this.content = content;
         this.userId=userId;
         this.departmentId=departmentId;
         this.createdAt=createdAt;
+        instances.add(this);
 
     }
 
@@ -64,4 +67,11 @@ public class News {
     public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
+
+    public static ArrayList<News> getAllInstances() {return instances;}
+
+    public static News setUpNewNews(){
+        return new News(0,"Holiday",0);
+    }
+
 }

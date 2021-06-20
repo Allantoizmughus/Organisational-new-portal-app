@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class NewsTest{
 
@@ -35,5 +36,11 @@ public class NewsTest{
     public void returnUserIdOfNews_int(){
         News firstNews=new News(0,"Holiday",0);
         assertEquals(0,firstNews.getUserId());
+    }
+
+    @Test
+    public void firstNews_getAllInstances_true(){
+        News firstNews=News.setUpNewNews();
+        assertTrue(News.getAllInstances().contains(firstNews));
     }
 }

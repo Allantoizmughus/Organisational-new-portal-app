@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
@@ -8,13 +9,15 @@ public class User {
     private String position;
     private String role;
     private int departmentId;
+    private static ArrayList<User> instances=new ArrayList<>();
 
     public User(int id,String name,String position,String role,int departmentId) {
-        this.id=id;
+        this.id=instances.size();
         this.name=name;
         this.position=position;
         this.role=role;
         this.departmentId=departmentId;
+        instances.add(this);
 
     }
 
@@ -57,6 +60,13 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
+    public static User setUpNewUser(){
+        return new User(0, "Allan", "Secretary", "Admin", 0);
+    }
+
+    public static ArrayList<User> getAllInstances() {return instances;}
+
 
     @Override
     public boolean equals(Object o) {

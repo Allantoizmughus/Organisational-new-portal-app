@@ -9,14 +9,19 @@ public class Department {
     private int memberNumber;
     private ArrayList<User> departmentUser;
     private ArrayList<News> departmentNews;
+    private static ArrayList<Department> instances=new ArrayList<>();
 
 
 
-    public Department(int id,String name,String description,int memberNumber) {
+    public Department(int id,String name,String description) {
         this.name=name;
         this.description=description;
         this.memberNumber=memberNumber;
-        this.id=id;
+        this.id= instances.size();
+        this.departmentUser=new ArrayList<>();
+        this.departmentNews=new ArrayList<>();
+        instances.add(this);
+
     }
 
     public String getName() {
@@ -55,8 +60,8 @@ public class Department {
         return departmentUser;
     }
 
-    public void setDepartmentUser(ArrayList<User> departmentUser) {
-        this.departmentUser = departmentUser;
+    public void setDepartmentUser(User newMember) {
+        departmentUser.add(newMember);
     }
 
     public ArrayList<News> getDepartmentNews() {
@@ -66,4 +71,11 @@ public class Department {
     public void setDepartmentNews(ArrayList<News> departmentNews) {
         this.departmentNews = departmentNews;
     }
+
+    public static ArrayList<Department> getAllInstances(){return instances;}
+
+    public static Department setUpNewDepartment(){
+        return new Department(0,"Admin","Registering");
+    }
+
 }

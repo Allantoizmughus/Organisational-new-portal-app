@@ -3,7 +3,8 @@ package model;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class UserTest {
 
@@ -23,6 +24,13 @@ public class UserTest {
     public void returnIdOfUser_int() {
         User newUser = new User(0, "Allan", "Secretary", "Admin", 0);
         assertEquals(0, newUser.getId());
+    }
+
+    @Test
+    public void setIdOfUser_int(){
+        User newUser = new User(0, "Allan", "Secretary", "Admin", 0);
+        newUser.setId(0);
+        assertNotEquals(0,newUser.getId());
     }
 
     @Test
@@ -51,4 +59,9 @@ public class UserTest {
         assertEquals("Admin", newUser.getRole());
     }
 
+    @Test
+    public void newUser_getAllInstances_true(){
+        User newUser=User.setUpNewUser();
+        assertTrue(User.getAllInstances().contains(newUser));
+    }
 }
