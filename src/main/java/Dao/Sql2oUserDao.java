@@ -46,6 +46,7 @@ public class Sql2oUserDao implements UserDao {
         String sql = "UPDATE users SET  (id,name,position,role,departmentId) = (:id :name,:position,:role,:departmentId) where id= :id ";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
+                    .addParameter("id",id)
                     .addParameter("name",name)
                     .addParameter("position",position)
                     .addParameter("role",role)
@@ -63,6 +64,10 @@ public class Sql2oUserDao implements UserDao {
 
     @Override
     public void clearAll() {
+        String sql = "DELETE FROM users";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql).executeUpdate();
+        }
 
     }
 }
