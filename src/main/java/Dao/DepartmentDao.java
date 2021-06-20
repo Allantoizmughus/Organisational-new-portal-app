@@ -14,8 +14,8 @@ public interface DepartmentDao {
 
     //READ
     List<Department> getAll();
-    List<News>getAllDepartmentNews();
-    List<User>getAllDepartmentUser();
+    List<News>getAllDepartmentNews(int departmentId);
+    List<User>getAllDepartmentUser(int departmentId);
     Department findById(int id);
 
     //UPDATE
