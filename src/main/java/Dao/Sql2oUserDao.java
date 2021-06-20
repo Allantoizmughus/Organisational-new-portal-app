@@ -3,6 +3,7 @@ package Dao;
 import model.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 
@@ -65,9 +66,11 @@ public class Sql2oUserDao implements UserDao {
     @Override
     public void clearAll() {
         String sql = "DELETE FROM users";
-        try(Connection con = sql2o.open()){
+        try (Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
-        }
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
 
+        }
     }
 }
