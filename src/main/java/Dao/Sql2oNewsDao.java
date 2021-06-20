@@ -1,6 +1,7 @@
 package Dao;
 
 import model.News;
+import model.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -28,7 +29,10 @@ public class Sql2oNewsDao implements NewsDao {
 
     @Override
     public List<News> getAll() {
-        return null;
+        String sql="SELECT * FROM news";
+        try(Connection con = sql2o.open()){
+            return con.createQuery(sql).executeAndFetch(News.class);
+        }
     }
 
     @Override
