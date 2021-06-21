@@ -82,10 +82,11 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
-    public void update(User user, String name, String position, String role, int departmentId) {
+    public void update(User user, int id,String name, String position, String role, int departmentId) {
         String sql = "UPDATE users SET  (name,position,role,departmentId) = ( :name,:position,:role,:departmentId) WHERE id= :id ";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
+                    .addParameter("id",id)
                     .addParameter("name",name)
                     .addParameter("position",position)
                     .addParameter("role",role)

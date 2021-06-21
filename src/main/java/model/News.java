@@ -11,7 +11,7 @@ public class News {
     private Timestamp createdAt;
     private static ArrayList<News> instances=new ArrayList<>();
 
-    public News(String content,int userId,int departmentId) {
+    public News(int id,String content,int userId,int departmentId) {
         this.id= instances.size();
         this.content = content;
         this.userId=userId;
@@ -71,7 +71,7 @@ public class News {
     public static ArrayList<News> getAllInstances() {return instances;}
 
     public static News setUpNewNews(){
-        return new News("Holiday",0,0);
+        return new News(0,"Holiday",0,0);
     }
 
 }

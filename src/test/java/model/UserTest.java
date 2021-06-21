@@ -16,46 +16,46 @@ public class UserTest {
 
     @Test
     public void returnInstancesOfUser_true() {
-        User newUser = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         assertEquals(true, newUser instanceof User);
     }
 
     @Test
     public void returnIdOfUser_int() {
-        User newUser = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         assertEquals(0, newUser.getId());
     }
 
     @Test
     public void setIdOfUser_int(){
-        User newUser = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         newUser.setId(0);
         assertNotEquals(0,newUser.getId());
     }
 
     @Test
     public void returnDepartmentId_int() {
-        User newUser = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         assertEquals(0, newUser.getDepartmentId());
 
     }
 
     @Test
     public void returnNameOfUser_String() {
-        User newUser = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         assertEquals("Allan", newUser.getName());
 
     }
 
     @Test
     public void returnPositionOfUser_String() {
-        User newUser = new User("Allan", "Secretary", "Admin", 0);
+        User newUser = new User(0,"Allan", "Secretary", "Admin", 0);
         assertEquals("Secretary", newUser.getPosition());
     }
 
     @Test
     public void returnRole_String() {
-        User newUser = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         assertEquals("Admin", newUser.getRole());
     }
 

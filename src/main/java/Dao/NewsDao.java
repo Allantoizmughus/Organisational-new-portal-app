@@ -15,7 +15,7 @@ public interface NewsDao {
     News findById(int id);
 
     //UPDATE
-    void update(News news,String content,int userId);
+    void update(News news,int id,String content,int userId);
 
     //DELETE
     void clearAll();

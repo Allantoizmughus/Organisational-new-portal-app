@@ -16,25 +16,25 @@ public class DepartmentTest {
 
     @Test
     public void returnInstancesOfDepartments_true(){
-        Department newDepartment=new Department("Admin","Registering");
+        Department newDepartment=new Department(0,"Admin","Registering");
         assertEquals(true,newDepartment instanceof Department);
     }
 
     @Test
     public void returnIdOfDepartment_int(){
-        Department newDepartment=new Department("Admin","Registering");
+        Department newDepartment=new Department(0,"Admin","Registering");
         assertEquals(0,newDepartment.getId());
     }
 
     @Test
     public void returnNameOfDepartment_String(){
-        Department newDepartment=new Department("Admin","Registering");
+        Department newDepartment=new Department(0,"Admin","Registering");
         assertEquals("Admin",newDepartment.getName());
     }
 
     @Test
     public void returnDescriptionOfDepartment_String(){
-        Department newDepartment=new Department("Admin","Registering");
+        Department newDepartment=new Department(0,"Admin","Registering");
         assertEquals("Registering",newDepartment.getDescription());
     }
 

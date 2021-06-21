@@ -35,10 +35,10 @@ public class Sql2oUserDaoTest {
 
     @Test
     public void returnAllDepartmentUser(){
-        User newUser  = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser  = new User( 0,"Allan", "Secretary", "Admin", 0);
         userDao.add(newUser);
 
-        User otherUser  = new User("Greg","Cook","Cooking",1);
+        User otherUser  = new User(0,"Greg","Cook","Cooking",1);
         userDao.add(otherUser);
 
         Department newDepartment = setupDepartment();
@@ -92,7 +92,7 @@ public class Sql2oUserDaoTest {
     public void updateUserCorrectly(){
         User newUser = setupNewUsers();
         userDao.add(newUser);
-        userDao.update(newUser,"Greg","Cook","Hospitality",0);
+        userDao.update(newUser,0,"Greg","Cook","Hospitality",0);
         User foundUser=userDao.findById(newUser.getId());
         assertEquals("Greg",foundUser.getName());
         assertEquals("Cook",foundUser.getPosition());
@@ -102,13 +102,13 @@ public class Sql2oUserDaoTest {
     }
 
     public User setupNewUsers() {
-        User newUser = new User("Allan", "Secretary", "Admin", 0);
+        User newUser = new User(0,"Allan", "Secretary", "Admin", 0);
         userDao.add(newUser);
         return newUser;
     }
 
     public Department setupDepartment() {
-        Department newDepartment=new Department("Security","Offer Security");
+        Department newDepartment=new Department(0,"Security","Offer Security");
         departmentDao.add(newDepartment);
         return newDepartment;
     }

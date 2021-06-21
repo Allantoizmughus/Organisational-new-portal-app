@@ -72,7 +72,7 @@ public class Sql2oNewsDaoTest {
     public void updateNewsCorrectly(){
         News firstNews=setUpNewNews();
         newsDao.add(firstNews);
-        newsDao.update(firstNews,"Health",1);
+        newsDao.update(firstNews,0,"Health",1);
         News foundNews=newsDao.findById(firstNews.getId());
         assertEquals("Health",foundNews.getContent());
         assertEquals(1,foundNews.getUserId());
@@ -80,13 +80,13 @@ public class Sql2oNewsDaoTest {
 
 
     public News setUpNewNews() {
-        News firstNews=new News("Holiday",0,0);
+        News firstNews=new News(0,"Holiday",0,0);
         newsDao.add(firstNews);
         return firstNews;
     }
 
     public Department setupDepartment() {
-        Department newDepartment=new Department("Security","Offer Security");
+        Department newDepartment=new Department(0,"Security","Offer Security");
         departmentDao.add(newDepartment);
         return newDepartment;
     }
