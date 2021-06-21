@@ -11,7 +11,7 @@ public class User {
     private int departmentId;
     private static ArrayList<User> instances=new ArrayList<>();
 
-    public User(int id,String name,String position,String role,int departmentId) {
+    public User(String name,String position,String role,int departmentId) {
         this.id=instances.size();
         this.name=name;
         this.position=position;
@@ -62,7 +62,7 @@ public class User {
     }
 
     public static User setUpNewUser(){
-        return new User(0, "Allan", "Secretary", "Admin", 0);
+        return new User( "Allan", "Secretary", "Admin", 0);
     }
 
     public static ArrayList<User> getAllInstances() {return instances;}

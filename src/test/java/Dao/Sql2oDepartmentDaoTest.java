@@ -1,10 +1,9 @@
 package Dao;
 
-import junit.framework.TestCase;
+
 import model.Department;
 import model.News;
 import model.User;
-import org.junit.AfterClass;
 import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -18,14 +17,14 @@ public class Sql2oDepartmentDaoTest {
     private static Connection conn;
     private static Sql2oDepartmentDao departmentDao;
     private static Sql2oNewsDao newsDao;
-    private static Sql2oUserDao usersDao;
+    private static Sql2oUserDao userDao;
 
     public void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/news_api_test";
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         departmentDao = new Sql2oDepartmentDao(sql2o);
         newsDao = new Sql2oNewsDao(sql2o);
-        usersDao = new Sql2oUserDao(sql2o);
+        userDao = new Sql2oUserDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -95,11 +94,11 @@ public class Sql2oDepartmentDaoTest {
 
     @Test
     public void returnAllDepartmentUser(){
-        User newUser  = new User(0, "Allan", "Secretary", "Admin", 0);
-        usersDao.add(newUser);
+        User newUser  = new User( "Allan", "Secretary", "Admin", 0);
+        userDao.add(newUser);
 
-        User otherUser  = new User(1,"Greg","Cook","Cooking",1);
-        usersDao.add(otherUser);
+        User otherUser  = new User("Greg","Cook","Cooking",1);
+        userDao.add(otherUser);
 
         Department newDepartment = setupDepartment();
         departmentDao.add(newDepartment);
@@ -112,7 +111,7 @@ public class Sql2oDepartmentDaoTest {
     }
 
 
-    private Department setupDepartment() {
+    public Department setupDepartment() {
         Department newDepartment=new Department("Security","Offer Security");
         departmentDao.add(newDepartment);
         return newDepartment;

@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sql2oUserDao implements UserDao {
@@ -50,6 +51,29 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
+    public List<User> getAllDepartmentUser(int departmentId) {
+        List<User> user = new ArrayList(); //empty list
+        String joinQuery = "SELECT userId FROM department_users WHERE departmentId = :departmentId";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allUserIds = con.createQuery(joinQuery)
+                    .addParameter("departmentId", departmentId)
+                    .executeAndFetch(Integer.class);
+            for (Integer userId : allUserIds){
+                String newsQuery = "SELECT * FROM users WHERE id = :userId";
+                user.add(
+                        con.createQuery(newsQuery)
+                                .addParameter("userId", userId)
+                                .executeAndFetchFirst(User.class));
+            }
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return user;
+
+    }
+
+    @Override
     public User findById(int id) {
         String sql ="SELECT * FROM users WHERE id = :id ";
         try(Connection con = sql2o.open()){
@@ -58,11 +82,10 @@ public class Sql2oUserDao implements UserDao {
     }
 
     @Override
-    public void update(User user,int id, String name, String position, String role, int departmentId) {
+    public void update(User user, String name, String position, String role, int departmentId) {
         String sql = "UPDATE users SET  (name,position,role,departmentId) = ( :name,:position,:role,:departmentId) WHERE id= :id ";
         try(Connection con = sql2o.open()){
             con.createQuery(sql)
-                    .addParameter("id",id)
                     .addParameter("name",name)
                     .addParameter("position",position)
                     .addParameter("role",role)
