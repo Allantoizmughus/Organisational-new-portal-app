@@ -53,6 +53,8 @@ public class Sql2oDepartmentDaoTest {
     public void getAllDepartments(){
         Department newDepartment = setupDepartment();
         Department newestDepartment = setupDepartment();
+        departmentDao.add(newDepartment);
+        departmentDao.add(newestDepartment);
         assertEquals(newestDepartment, departmentDao.getAll().size());
     }
 

@@ -101,13 +101,13 @@ public class Sql2oUserDaoTest {
 
     }
 
-    private User setupNewUsers() {
+    public User setupNewUsers() {
         User newUser = new User("Allan", "Secretary", "Admin", 0);
         userDao.add(newUser);
         return newUser;
     }
 
-    private Department setupDepartment() {
+    public Department setupDepartment() {
         Department newDepartment=new Department("Security","Offer Security");
         departmentDao.add(newDepartment);
         return newDepartment;
