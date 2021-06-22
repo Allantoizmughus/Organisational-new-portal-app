@@ -2,6 +2,7 @@ import Dao.Sql2oDepartmentDao;
 import Dao.Sql2oNewsDao;
 import Dao.Sql2oUserDao;
 import com.google.gson.Gson;
+import model.Department;
 import model.News;
 import model.User;
 import org.sql2o.Connection;
@@ -44,6 +45,15 @@ public class App {
             res.type("application/json");
             return gson.toJson(news);
 
+        });
+        post("Department/new","application/json", (req,res)->{
+            Department department= gson.fromJson(req.body(), Department.class);
+
+            departmentDao.add(department);
+            res.status(201);
+            res.type("application/json");
+            res.redirect("/department");
+            return null;
         });
     }
 }
