@@ -29,7 +29,9 @@ public class Sql2oNewsDaoTest {
     }
 
     public void tearDown() throws Exception {
-        conn.close();
+        newsDao.clearAll();
+        userDao.clearAll();
+        departmentDao.clearAll();
     }
 
     @Test

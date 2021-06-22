@@ -29,7 +29,9 @@ public class Sql2oDepartmentDaoTest {
     }
 
     public void tearDown() throws Exception {
-        conn.close();
+        departmentDao.clearAll();
+        newsDao.clearAll();
+        userDao.clearAll();
     }
 
     @Test
@@ -96,10 +98,10 @@ public class Sql2oDepartmentDaoTest {
 
     @Test
     public void returnAllDepartmentUser(){
-        User newUser  = new User( "Allan", "Secretary", "Admin", 0);
+        User newUser  = new User( 0,"Allan", "Secretary", "Admin", 0);
         userDao.add(newUser);
 
-        User otherUser  = new User("Greg","Cook","Cooking",1);
+        User otherUser  = new User(0,"Greg","Cook","Cooking",1);
         userDao.add(otherUser);
 
         Department newDepartment = setupDepartment();
