@@ -100,5 +100,30 @@ public class App {
             return gson.toJson(userDao.findById(userId));
         });
 
+        get("/departments", (req,res)->{
+            res.type("application/json");
+            return  gson.toJson(departmentDao.getAll());
+        });
+
+        get("/departments/:id",(req,res)->{
+            res.type("application/json");
+            int departmentId = Integer.parseInt(req.params("id"));
+            res.type("application/json");
+            return gson.toJson(departmentDao.findById(departmentId));
+        });
+
+        get("/departments/:id/users",(req,res)->{
+            res.type("application/json");
+            int departmentId = Integer.parseInt(req.params("id"));
+            res.type("application/json");
+            return gson.toJson(departmentDao.findById(departmentId));
+        });
+
+        get("/departments/:id/news",(req,res)->{
+            res.type("application/json");
+            int departmentId = Integer.parseInt(req.params("id"));
+            res.type("application/json");
+            return gson.toJson(departmentDao.findById(departmentId));
+        });
     }
 }
