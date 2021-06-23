@@ -125,5 +125,18 @@ public class App {
             res.type("application/json");
             return gson.toJson(departmentDao.findById(departmentId));
         });
+
+        get("/news", (req,res)->{
+            res.type("application/json");
+            return  gson.toJson(newsDao.getAll());
+        });
+
+        get("news/:id",(req,res)->{
+            res.type("application/json");
+            int newsId=Integer.parseInt(req.params("id"));
+            res.type("application/json");
+            return gson.toJson(newsDao.findById(newsId));
+        });
+
     }
 }
