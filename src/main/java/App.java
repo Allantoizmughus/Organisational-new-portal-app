@@ -8,7 +8,7 @@ import model.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 
 public class App {
@@ -87,5 +87,18 @@ public class App {
                 return null;
             }
         });
+
+        get("/user",(req,res)->{
+            res.type("application/json");
+            return gson.toJson(userDao.getAll());
+        });
+
+        get("/users/:id",(req,res)->{
+            res.type("application/json");
+            int userId = Integer.parseInt(req.params("id"));
+            res.type("application/json");
+            return gson.toJson(userDao.findById(userId));
+        });
+
     }
 }
