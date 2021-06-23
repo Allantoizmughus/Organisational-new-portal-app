@@ -21,8 +21,8 @@ public class Sql2oUserDaoTest {
     private static User user;
 
     public void setUp() throws Exception {
-        String connectionString = "jdbc:postgresql://localhost:5432/news_api_test";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        String connectionString = "jdbc:postgresql://localhost:5432/news_portal";
+        Sql2o sql2o = new Sql2o(connectionString, "moringa", "Access");
         departmentDao = new Sql2oDepartmentDao(sql2o);
         newsDao = new Sql2oNewsDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);

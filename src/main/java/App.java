@@ -20,8 +20,8 @@ public class App {
         Connection conn;
         Gson gson =new Gson();
 
-        String connectionString="";
-        Sql2o sql2o=new Sql2o(connectionString,"","");
+        String connectionString="jdbc:postgresql://localhost:5432/news_portal";
+        Sql2o sql2o=new Sql2o(connectionString,"moringa","Access");
 
         departmentDao = new Sql2oDepartmentDao(sql2o);
         newsDao = new Sql2oNewsDao(sql2o);
