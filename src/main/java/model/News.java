@@ -70,6 +70,10 @@ public class News {
 
     public static ArrayList<News> getAllInstances() {return instances;}
 
+    public static void clearAllNews(){
+        instances.clear();
+    }
+
     public static News setUpNewNews(){
         return new News(0,"Holiday",0,0);
     }

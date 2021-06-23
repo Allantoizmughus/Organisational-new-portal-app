@@ -51,7 +51,11 @@ public class DepartmentTest {
         newDepartment.setDepartmentUser(newUser);
         assertEquals("Allan",newDepartment.getDepartmentUser().get(0).getName());
 
-
     }
 
+    @Test
+    public void clearAllDepartmentsCorrectly_0(){
+        Department.clearAllDepartment();
+        assertEquals(Department.getAllInstances().size(),0);
+    }
 }

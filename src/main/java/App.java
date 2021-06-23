@@ -8,6 +8,8 @@ import model.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 import static spark.Spark.*;
 
 
@@ -24,6 +26,12 @@ public class App {
         Sql2o sql2o=new Sql2o(connectionString,"moringa","Access");
 
         departmentDao = new Sql2oDepartmentDao(sql2o);
+//        {
+////            @Override
+////            public List<Department> getAll(){
+////                return null;
+////            }
+//        };
         newsDao = new Sql2oNewsDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
         conn = sql2o.open();
@@ -40,23 +48,23 @@ public class App {
         post("/news/new", "application/json",(req,res)->{
             News news=gson.fromJson(req.body(), News.class);
 
+
             newsDao.add(news);
             res.status(201);
             res.type("application/json");
             return gson.toJson(news);
 
         });
-        post("departments/new","application/json", (req,res)->{
-            Department department= gson.fromJson(req.body(), Department.class);
-
+        post("department/new","application/json", (request,response)->{
+            Department department= gson.fromJson(request.body(), Department.class);
             departmentDao.add(department);
-            res.status(201);
-            res.type("application/json");
-            res.redirect("/department");
-            return null;
+
+            response.type("application/json");
+            response.status(201);
+            return gson.toJson(departmentDao.getAll());
         });
 
-        post("/departments/:departmentId/news/:newsId","application/json",(req,res)->{
+        post("/department/:departmentId/news/:newsId","application/json",(req,res)->{
             int departmentId = Integer.parseInt(req.params("departmentId"));
             int newsId = Integer.parseInt(req.params("newsId"));
             Department department = departmentDao.findById(departmentId);
@@ -72,7 +80,7 @@ public class App {
             }
         });
 
-        post("/departments/:departmentId/users/:userId","application/json",(req,res)->{
+        post("/department/:departmentId/users/:userId","application/json",(req,res)->{
             int departmentId = Integer.parseInt(req.params("departmentId"));
             int userId = Integer.parseInt(req.params("userId"));
             Department department = departmentDao.findById(departmentId);
@@ -100,26 +108,26 @@ public class App {
             return gson.toJson(userDao.findById(userId));
         });
 
-        get("/departments", (req,res)->{
+        get("/department", (req,res)->{
             res.type("application/json");
             return  gson.toJson(departmentDao.getAll());
         });
 
-        get("/departments/:id",(req,res)->{
+        get("/department/:id",(req,res)->{
             res.type("application/json");
             int departmentId = Integer.parseInt(req.params("id"));
             res.type("application/json");
             return gson.toJson(departmentDao.findById(departmentId));
         });
 
-        get("/departments/:id/users",(req,res)->{
+        get("/department/:id/users",(req,res)->{
             res.type("application/json");
             int departmentId = Integer.parseInt(req.params("id"));
             res.type("application/json");
             return gson.toJson(departmentDao.findById(departmentId));
         });
 
-        get("/departments/:id/news",(req,res)->{
+        get("/department/:id/news",(req,res)->{
             res.type("application/json");
             int departmentId = Integer.parseInt(req.params("id"));
             res.type("application/json");

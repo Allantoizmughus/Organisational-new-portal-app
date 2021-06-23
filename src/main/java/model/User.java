@@ -67,6 +67,16 @@ public class User {
 
     public static ArrayList<User> getAllInstances() {return instances;}
 
+    public static void clearAllUser(){
+        instances.clear();
+    }
+
+    public static void clearAllDepartment(){
+        instances.clear();
+    }
+
+
+
 
     @Override
     public boolean equals(Object o) {

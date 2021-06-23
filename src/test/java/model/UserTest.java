@@ -30,7 +30,7 @@ public class UserTest {
     public void setIdOfUser_int(){
         User newUser = new User( 0,"Allan", "Secretary", "Admin", 0);
         newUser.setId(0);
-        assertNotEquals(0,newUser.getId());
+        assertNotEquals(1,newUser.getId());
     }
 
     @Test
@@ -63,5 +63,17 @@ public class UserTest {
     public void newUser_getAllInstances_true(){
         User newUser=User.setUpNewUser();
         assertTrue(User.getAllInstances().contains(newUser));
+    }
+
+    @Test
+    public void clearAllUsersCorrectly_0(){
+        User.clearAllUser();
+        assertEquals(User.getAllInstances().size(),0);
+    }
+
+    @Test
+    public void clearAllDepartmentsCorrectly_0(){
+        Department.clearAllDepartment();
+        assertEquals(Department.getAllInstances().size(),0);
     }
 }

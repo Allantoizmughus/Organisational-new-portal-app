@@ -23,7 +23,7 @@ public class NewsTest{
     @Test
     public void returnIdOfNews_int(){
         News firstNews=new News(0,"Holiday",0,0);
-        assertEquals(0,firstNews.getId());
+        assertEquals(1,firstNews.getId());
     }
 
     @Test
@@ -43,4 +43,11 @@ public class NewsTest{
         News firstNews=News.setUpNewNews();
         assertTrue(News.getAllInstances().contains(firstNews));
     }
+
+    @Test
+    public void clearAllNewsCorrectly_0(){
+        News.clearAllNews();
+        assertEquals(News.getAllInstances().size(),0);
+    }
+
 }

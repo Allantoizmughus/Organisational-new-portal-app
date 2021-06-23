@@ -74,6 +74,11 @@ public class Department {
 
     public static ArrayList<Department> getAllInstances(){return instances;}
 
+    public static void clearAllDepartment(){
+        instances.clear();
+    }
+
+
     public static Department setUpNewDepartment(){
         return new Department(0,"Admin","Registering");
     }
