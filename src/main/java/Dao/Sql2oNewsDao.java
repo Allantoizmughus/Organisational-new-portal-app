@@ -21,9 +21,10 @@ public class Sql2oNewsDao implements NewsDao {
         String sql="INSERT INTO news(content,userId) VALUES(:content,:userId)";
         try(Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql,true)
-                    .addParameter("id",news.getId())
-                    .addParameter("content",news.getContent())
-                    .addParameter("userId",news.getUserId())
+//                    .addParameter("id",news.getId())
+//                    .addParameter("content",news.getContent())
+//                    .addParameter("userId",news.getUserId())
+                    .bind(news)
                     .executeUpdate().getKey();
             news.setId(id);
         }
