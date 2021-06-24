@@ -42,7 +42,7 @@ public class App {
             userDao.add(user);
             res.status(201);
             res.type("application/json");
-            return gson.toJson(user);
+            return gson.toJson(userDao.getAll());
         });
 
         post("/news/new", "application/json",(req,res)->{
@@ -52,7 +52,7 @@ public class App {
             newsDao.add(news);
             res.status(201);
             res.type("application/json");
-            return gson.toJson(news);
+            return gson.toJson(newsDao.getAll());
 
         });
         post("department/new","application/json", (request,response)->{
