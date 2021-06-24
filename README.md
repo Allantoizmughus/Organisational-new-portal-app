@@ -13,6 +13,37 @@ For more Contribution, Pull requests are welcomed. For major changes, please ope
 
 Website's link to view Live click here:https://github.com/Allantoizmughus/Organisational-new-portal-app.git
 
+To run the app using postgres, the following commands;
+### DATABASE NAME
+`\c news_portal;`
+`\c news_potal_test;`
+### CREATE  TABLES
+* `nativage to main/resources/db  `
+* `run  psql < create.sql`
+### DROP  TABLES
+* `nativage to main/resources/db  `
+* `run  psql < drop.sql`
+
+
+## End points
+| URL                                            | HTTP Verb   |                                 DESCRIPTION|
+|--                                              |  ---        |                                   ---      |
+|/user                                           |get          |     Get users                              |
+|/users/:id                                      |get          |     get users using id                     |
+|/department                                     |get          |     Get departments                        |
+|/department/:id                                 |get          |     get department using id                |
+|/departments/:id/user                           |get          |     get users in a specific department     |
+|//department/:id/news                           |get          |     get news in a specific department      |
+|/user/:id/departments                           |get          |     get users in a department              |
+|/news                                           |get          |     Get news                               |
+|/news/:id                                       |get          |     get news using id                      |   
+|/user/new                                       |post         |     add a new user                         |
+|/department/new                                 |post         |     add a new department                   |
+|/news/new                                       |post         |     add news                               |
+|/department/:departmentId/news/:newsId          |post         |     add news in department                 |
+/department/:departmentId/users/:userId          |post         |     add user in department                 |                    |
+
+
 MIT License
 
 Copyright (c) 2021 Allan Mugweru.
