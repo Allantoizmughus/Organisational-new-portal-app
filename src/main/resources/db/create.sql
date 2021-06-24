@@ -2,6 +2,8 @@ SET MODE PostgreSQL;
 
 CREATE DATABASE news_portal;
 
+\c news_portal;
+
 CREATE TABLE users(id serial PRIMARY KEY,name VARCHAR,position VARCHAR,role VARCHAR,departmentId INTEGER);
 
 CREATE TABLE news(id serial PRIMARY KEY,content VARCHAR,userId INTEGER,departmentId INTEGER);
